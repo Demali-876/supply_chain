@@ -1,0 +1,29 @@
+{
+  "canisters": {
+    "supply_chain_backend": {
+      "declarations": {
+        "node_compatibility": true
+      },
+      "main": "src/supply_chain_backend/main.mo",
+      "type": "motoko"
+    },
+    "supply_chain_frontend": {
+      "dependencies": [
+        "supply_chain_backend"
+      ],
+      "source": [
+        "src/supply_chain_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "supply_chain_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
