@@ -1,7 +1,9 @@
 import Types "../types";
+import Result "mo:base/Result";
 import Manufacturer "canister:manufacturer";
+
 type Product = Types.Product;
-type Result = Types.Result;
+type Result<A, B> = Result.Result<A, B>;
 
 actor Supplier {
     public shared func provideProductInfo(productId: Text) : async Result<Text, Text> {

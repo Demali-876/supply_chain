@@ -1,6 +1,4 @@
-import Result "mo:base/Result";
 module{
-public type Result<A, B> = Result.Result<A, B>;
 public type Product = {
     id: Text;
     description: Text;

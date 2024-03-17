@@ -1,12 +1,14 @@
 import Types "../types";
 import Buffer "mo:base/Buffer";
+import Result "mo:base/Result";
 import Distributor "canister:distributor";
 
 type Order = Types.Order;
 type Product = Types.Product;
+type Result<A, B> = Result.Result<A, B>;
 actor Manufacturer {
     var inventory: Buffer.Buffer<Product> = Buffer.Buffer(0);
-    public shared func startManufacturing(product: Product) : async Text {
+    public shared func startManufacturing(product: Product) : async Result<Text, Text> {
         // Simulate manufacturing process and update product status
         let manufacturedProduct = {
             product with status = "Manufactured";
@@ -15,15 +17,15 @@ actor Manufacturer {
         let order = Order {
             orderId = "order-" # product.id;
             productId = product.id;
-            quantity = 1; // Simplification 
+            quantity = 1; // Simplification
             status = "In Progress";
         };
         switch (await Distributor.fulfillOrder(order)) {
             case (#ok(_)) {
-                return "Manufactured product and initiated order for " # productId;
+                return #ok("Manufactured product and initiated order with for " # productId);
             };
             case (#err(errMsg)) {
-                return "Failed to send initiate order fulfillment to Distributor for " # productId # ". Error: " # errMsg;
+                return #err("Failed to initiate order fulfillment with Distributor for " # product.id # ". Error: " # errMsg);
             };
         };
     };

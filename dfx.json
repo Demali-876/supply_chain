@@ -5,21 +5,27 @@
         "node_compatibility": true
       },
       "main": "src/supply_chain/supplier/main.mo",
-      "type": "motoko"
+      "type": "motoko",
+      "dependencies": [
+        "manufacturer"]
     },
     "manufacturer": {
       "declarations": {
         "node_compatibility": true
       },
       "main": "src/supply_chain/manufacturer/main.mo",
-      "type": "motoko"
+      "type": "motoko",
+      "dependencies": [
+        "distributor"]
     },
     "distributor": {
       "declarations": {
         "node_compatibility": true
       },
       "main": "src/supply_chain/distributor/main.mo",
-      "type": "motoko"
+      "type": "motoko",
+      "dependencies": [
+        "retailer"]
     },
     "retailer": {
       "declarations": {
