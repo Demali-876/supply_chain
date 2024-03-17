@@ -1,4 +1,7 @@
-import { createActor, canisterId } from 'declarations/supply_chain_backend';
+import { createActor, canisterId } from 'declarations/supply_chain/supplier';
+import { createActor, canisterId } from 'declarations/supply_chain/manufacturer';
+import { createActor, canisterId } from 'declarations/supply_chain/distributor';
+import { createActor, canisterId } from 'declarations/supply_chain/retailer'; 
 import { building } from '$app/environment';
 
 function dummyActor() {

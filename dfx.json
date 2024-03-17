@@ -1,15 +1,39 @@
 {
   "canisters": {
-    "supply_chain_backend": {
+    "supplier": {
       "declarations": {
         "node_compatibility": true
       },
-      "main": "src/supply_chain_backend/main.mo",
+      "main": "src/supply_chain/supplier/main.mo",
+      "type": "motoko"
+    },
+    "manufacturer": {
+      "declarations": {
+        "node_compatibility": true
+      },
+      "main": "src/supply_chain/manufacturer/main.mo",
+      "type": "motoko"
+    },
+    "distributor": {
+      "declarations": {
+        "node_compatibility": true
+      },
+      "main": "src/supply_chain/distributor/main.mo",
+      "type": "motoko"
+    },
+    "retailer": {
+      "declarations": {
+        "node_compatibility": true
+      },
+      "main": "src/supply_chain/retailer/main.mo",
       "type": "motoko"
     },
     "supply_chain_frontend": {
       "dependencies": [
-        "supply_chain_backend"
+        "supplier",
+        "manufacturer",
+        "distributor",
+        "retailer"
       ],
       "source": [
         "src/supply_chain_frontend/dist"
