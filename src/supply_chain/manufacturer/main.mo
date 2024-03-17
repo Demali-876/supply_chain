@@ -13,14 +13,15 @@ actor Manufacturer {
         let manufacturedProduct = {
             product with status = "Manufactured";
             };
-        inventory.add( manufacturedProduct);
-        let order = Order {
+        inventory.add(manufacturedProduct);
+        let order : Order = {
             orderId = "order-" # product.id;
             productId = product.id;
             quantity = 1; // Simplification
             status = "In Progress";
         };
-        switch (await Distributor.fulfillOrder(order)) {
+        let fullfillOrderResult = await Distributor.fulfillOrder(order);
+        switch (fullfillOrderResult) {
             case (#ok(_)) {
                 return #ok("Manufactured product and initiated order with for " # productId);
             };

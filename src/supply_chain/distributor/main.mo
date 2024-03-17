@@ -5,10 +5,11 @@ type Order = Types.Order;
 type Result<A, B> = Result.Result<A, B>;
 actor Distributor {
     public shared func fulfillOrder(order: Order) : async Result<Text, Text> {
-        let updatedOrder = {
+        let updatedOrder : Order = {
             order with status = "In Transit";
         };
-        switch (await Retailer.placeOrder(updatedOrder)) {
+        let orderResult = await Retailer.placeOrder(updatedOrder);
+        switch (orderResult) {
             case (#ok(_)) {
                 return #ok("Order for Product ID " # order.productId # " is in transit.");
             };
