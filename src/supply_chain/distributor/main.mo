@@ -1,9 +1,9 @@
 import Types "../types";
 import Retailer "canister:retailer";
 import Result "mo:base/Result";
+actor Distributor {
 type Order = Types.Order;
 type Result<A, B> = Result.Result<A, B>;
-actor Distributor {
     public shared func fulfillOrder(order: Order) : async Result<Text, Text> {
         let updatedOrder : Order = {
             order with status = "In Transit";

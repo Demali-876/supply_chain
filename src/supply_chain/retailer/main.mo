@@ -1,10 +1,10 @@
 import Types "../types";
 import Buffer "mo:base/Buffer";
 import Result "mo:base/Result";
+actor Retailer {
 type Order = Types.Order;
 type Product = Types.Product;
 type Result<A, B> = Result.Result<A, B>;
-actor Retailer {
     var inventory: Buffer.Buffer<Product> = Buffer.Buffer<Product>(0);
     let maxInventorySize: Nat = 100; // limit so that cycles limit per message is never surpassed
     public shared func placeOrder(order: Order) : async Result<Text,Text> {
